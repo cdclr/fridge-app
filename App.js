@@ -15,9 +15,10 @@ class FridgeApp extends React.Component {
     .then(response => response.json())
     .then(responseJson => {
     
+      console.log(responseJson);
       this.setState({
         groceries: responseJson.hints
-      })
+      });
     })
     .catch(e => console.log(e));
   }
@@ -38,6 +39,7 @@ class FridgeApp extends React.Component {
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.groceries}
+          keyExtractor={item => item.food.id}
           renderItem={FridgeApp.renderListItem}
         />
       </View>
@@ -56,8 +58,6 @@ const styles = StyleSheet.create({
 const app_id = '75bee68f';
 const app_key = '12073d29a1d3ae462f733e8d6e90ae4f';
 
-
-// https://api.edamam.com/search?app_id=508cb3d6&app_key=6dadfad538c6dab8170d0227a830eab8&q=chicken+cucumber
 export default createStackNavigator({
   FridgeApp: {
     screen: FridgeApp
