@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, FlatList, Text } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList, Text } from 'react-native';
 
 const app_id = '75bee68f';
 const app_key = '12073d29a1d3ae462f733e8d6e90ae4f';
@@ -48,3 +48,11 @@ export default class Groceries extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    renderListItem: {
+      backgroundColor: 'white',
+      padding: 15,
+      marginBottom: 1
+    }
+});

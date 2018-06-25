@@ -49,14 +49,6 @@ class Fridge extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  renderListItem: {
-    backgroundColor: 'white',
-    padding: 15,
-    marginBottom: 1
-  }
-});
-
 export default createBottomTabNavigator({
   Fridge: Fridge,
   Groceries: Groceries
