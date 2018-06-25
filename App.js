@@ -7,5 +7,6 @@ import Fridge from './components/Fridge.js';
 
 export default createBottomTabNavigator({
   Fridge: Fridge,
+  ShoppingList: ShoppingList,
   Groceries: Groceries
 });
