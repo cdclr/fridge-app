@@ -1,20 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-//import FoodItem from './components/FoodItem.js';
-
-class FoodItem extends React.component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-      return (
-          <View>
-              <Text>meme</Text>
-          </View>
-      )
-  };
-}
+import FoodItem from './components/FoodItem.js';
 
 class Groceries extends React.Component {
  
@@ -61,13 +48,30 @@ class Fridge extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fridgeItems: [],
+      fridgeItems: [{
+        key: 0,
+        name: 'Apple',
+        isChecked: false,
+      },
+      {
+        key: 1,
+        name: 'Banana',
+        isChecked: false,
+      },
+      {
+        key: 2,
+        name: 'Cherry',
+        isChecked: false,
+      }],
     };
   }
   render() {
     return (
       <View>
-        <FoodItem/>
+        <FlatList
+          data={this.state.fridgeItems}
+          renderItem={({item}) => <FoodItem item = {item}/>}
+        />
         <Text>Fridge</Text>
       </View>
     )

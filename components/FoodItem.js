@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Switch } from 'react-native';
 
-export default class FoodItem extends React.component {
+export default class FoodItem extends React.Component {
     render() {
         return (
             <View>
-                <Text>meme</Text>
+                <Switch/>
+                <Text>{this.props.item.name}</Text>
             </View>
         )
     };
