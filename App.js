@@ -1,6 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+//import FoodItem from './components/FoodItem.js';
+
+class FoodItem extends React.component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+      return (
+          <View>
+              <Text>meme</Text>
+          </View>
+      )
+  };
+}
 
 class Groceries extends React.Component {
  
@@ -8,16 +22,6 @@ class Groceries extends React.Component {
     super(props);
     this.state = {
       groceries: [],
-      testState: 1,
-      data: [{
-        color: 'blue',
-        URL: 'www.google.com',
-        text: 'TriHard'
-      },{
-        color: 'red',
-        URL: 'www.google.com',
-        text: 'TriHex'
-      }]
     }
 
     const url = `https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=${app_id}&app_key=${app_key}&page=0`;
@@ -54,11 +58,16 @@ class Groceries extends React.Component {
 }
 
 class Fridge extends React.Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      fridgeItems: [],
+    };
+  }
   render() {
     return (
       <View>
-        
+        <FoodItem/>
         <Text>Fridge</Text>
       </View>
     )
