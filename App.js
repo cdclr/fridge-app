@@ -1,14 +1,24 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
-class FridgeApp extends React.Component {
-
+class Groceries extends React.Component {
+ 
   constructor(props) {
     super(props);
     this.state = {
-      groceries: []
-    };
+      groceries: [],
+      testState: 1,
+      data: [{
+        color: 'blue',
+        URL: 'www.google.com',
+        text: 'TriHard'
+      },{
+        color: 'red',
+        URL: 'www.google.com',
+        text: 'TriHex'
+      }]
+    }
 
     const url = `https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=${app_id}&app_key=${app_key}&page=0`;
     fetch(url)
@@ -23,27 +33,35 @@ class FridgeApp extends React.Component {
     .catch(e => console.log(e));
   }
 
-  static navigationOptions = {
-    title: 'fridge-app'
-  }
-
-  static renderListItem(item) {
+  renderListItem(item) {
     return (
       <Text style={styles.renderListItem}>{item.item.food.label}</Text>
     );
   }
 
   render() {
-    console.log(this.state.groceries);
+    console.log(this.props.groceries);
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.state.groceries}
           keyExtractor={item => item.food.id}
-          renderItem={FridgeApp.renderListItem}
+          renderItem={this.renderListItem}
         />
       </View>
     );
+  }
+}
+
+class Fridge extends React.Component {
+
+  render() {
+    return (
+      <View>
+        
+        <Text>Fridge</Text>
+      </View>
+    )
   }
 }
 
@@ -58,8 +76,7 @@ const styles = StyleSheet.create({
 const app_id = '75bee68f';
 const app_key = '12073d29a1d3ae462f733e8d6e90ae4f';
 
-export default createStackNavigator({
-  FridgeApp: {
-    screen: FridgeApp
-  },
+export default createBottomTabNavigator({
+  Fridge: Fridge,
+  Groceries: Groceries
 });
