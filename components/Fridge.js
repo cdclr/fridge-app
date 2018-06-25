@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Flatlist, Switch} from 'react-native';
+import { View, Text, FlatList, Switch} from 'react-native';
 import FoodItem from './FoodItem.js';
 
 export default class Fridge extends React.Component {
