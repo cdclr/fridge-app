@@ -33,13 +33,6 @@ export default class Fridge extends React.Component {
       }
       return arr;
     }
-    foodItem({item}) { 
-      return (
-        <FoodItem item={item}
-        toggleItemSelect = {this.toggleItemSelect}
-        />
-      );
-    }
 
     toggleItemSelect(itemKey) {
       let newFridgeItems = Object.assign({}, this.state.fridgeItems);
@@ -67,7 +60,12 @@ export default class Fridge extends React.Component {
           />
           <FlatList
             data={this.fridgeItemsToArray()}
-            renderItem={this.foodItem}
+            renderItem={({item}) => (
+              <FoodItem
+                item = {item}
+                toggleItemSelect = {() => this.toggleItemSelect(item.key)}
+              />
+            )}
           />
           <Text>Fridge</Text>
         </View>
