@@ -1,17 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, FlatList, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList, Text, TouchableHighlight, Button } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
 const app_id = '75bee68f';
 const app_key = '12073d29a1d3ae462f733e8d6e90ae4f';
 
 export default class Groceries extends React.Component {
  
-    constructor(props) {
-        super(props);
-        this.state = {
-            searchQuery: '',
-            groceries: [],
-        }
+    state = {
+        searchQuery: '',
+        groceries: [],
     }
 
     sendFoodQuery() {
@@ -30,9 +28,13 @@ export default class Groceries extends React.Component {
         .catch(e => console.error(e));
     }
 
+    componentDidMount() {
+        
+    }
+
     render() {
         return (
-        <View style={{ flex: 1 }}>
+        <View style={{flex: 1}}>
             <View style={styles.searchbox} >
                 <TextInput
                     style={styles.searchboxInput}
@@ -47,9 +49,7 @@ export default class Groceries extends React.Component {
                 keyExtractor={item => item.food.id}
                 renderItem={({item}) => (
                     <TouchableHighlight 
-                        onPress={() => {
-                            console.log(item);
-                        }}
+                        onPress={() => this.props.addShoppingListItem(item)}
                     >
                         <Text style={styles.renderListItem} >
                             {item.food.label}

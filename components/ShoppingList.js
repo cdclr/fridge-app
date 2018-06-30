@@ -1,47 +1,35 @@
 import React from 'react';
-import { View, Text, FlatList, Switch} from 'react-native';
+import { View, Text, FlatList, Switch, TouchableHighlight, StyleSheet} from 'react-native';
 import FoodItem from './FoodItem.js';
 
-export default class ShoppingList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          fridgeItems: [{
-            key: '0',
-            name: 'Applie Pie',
-            isChecked: false,
-          },
-          {
-            key: '1',
-            name: 'Banana Pudding',
-            isChecked: false,
-          },
-          {
-            key: '2',
-            name: 'Cherry Tart',
-            isChecked: false,
-          }],
-        };
-      }
-    
-      foodItem({item}) {
-          
-        return (
-          <FoodItem item={item} />
-        );
-      }
-    
+export default class ShoppingList extends React.Component {    
     
       render() {
     
         return (
           <View>
             <FlatList
-              data={this.state.fridgeItems}
-              renderItem={this.foodItem}
+              data={this.props.shoppingListItems}
+              renderItem={({item}) => (
+                <TouchableHighlight 
+                    onPress={() => {}}
+                >
+                    <Text style={styles.renderListItem} >
+                        {item.food.label}
+                    </Text>
+                </TouchableHighlight>
+              )}
+              keyExtractor={item => item.food.id}
             />
-            <Text>Fridge</Text>
           </View>
         )
       }
 }
+
+const styles = StyleSheet.create({
+  renderListItem: {
+    backgroundColor: 'white',
+    padding: 15,
+    marginBottom: 1
+  }
+});
